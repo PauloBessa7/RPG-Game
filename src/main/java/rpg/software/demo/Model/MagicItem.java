@@ -1,6 +1,12 @@
 package rpg.software.demo.Model;
-
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import rpg.software.demo.Enums.TypeItem;
 
 @Entity
@@ -11,36 +17,28 @@ public class MagicItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String name;
 
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private TypeItem type;
 
+    @Column(nullable = false)
     private int power;
 
+    @Column(nullable = false)
     private int defence;
 
-    public MagicItem() {
-    }
+    public MagicItem() {}
 
     public MagicItem(String name, TypeItem type, int power, int defence) {
         this.name = name;
         this.type = type;
-
-        // Regras de negócio aplicadas na instância
-        if (type == TypeItem.WEAPON) {
-            this.power = power;
-            this.defence = 0;
-        } else if (type == TypeItem.ARMOR) {
-            this.power = 0;
-            this.defence = defence;
-        } else {
-            this.power = power;
-            this.defence = defence;
-        }
+        this.power = power;
+        this.defence = defence;
     }
 
-    // Getters e Setters
     public Long getId() {
         return id;
     }
@@ -66,11 +64,7 @@ public class MagicItem {
     }
 
     public void setPower(int power) {
-        if (this.type == TypeItem.ARMOR) {
-            this.power = 0;
-        } else {
-            this.power = power;
-        }
+        this.power = power;
     }
 
     public int getDefence() {
@@ -78,10 +72,17 @@ public class MagicItem {
     }
 
     public void setDefence(int defence) {
-        if (this.type == TypeItem.WEAPON) {
-            this.defence = 0;
-        } else {
-            this.defence = defence;
-        }
+        this.defence = defence;
+    }
+
+    @Override
+    public String toString() {
+        return "MagicItem{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", type=" + type +
+                ", power=" + power +
+                ", defence=" + defence +
+                '}';
     }
 }
