@@ -44,10 +44,7 @@ cd RPG-Game
 ```
 Rode o projeto com:
 
-```bash
-./mvnw spring-boot:run
-Acesse http://localhost:8080/swagger-ui/ para testar os endpoints.
-```
+- Compilar o projeto com alguma IDE de sua escolha, meu caso foi o VS Code
 
 ---
 
