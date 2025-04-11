@@ -1,4 +1,5 @@
 package rpg.software.demo.Model;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -15,19 +16,26 @@ public class MagicItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Schema(example = "1")
     private Long id;
 
     @Column(nullable = false)
+    @Schema(example = "Diamond Armor")
     private String name;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
+    @Schema(
+        example = "ARMOR"
+    )
     private TypeItem type;
 
     @Column(nullable = false)
+    @Schema(example = "0")
     private int power;
 
     @Column(nullable = false)
+    @Schema(example = "2")
     private int defence;
 
     public MagicItem() {}

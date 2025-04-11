@@ -3,6 +3,7 @@ package rpg.software.demo.Model;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -22,25 +23,32 @@ public class Character {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Schema(example = "1")
     private Long id;
 
     @Column(nullable = false)
+    @Schema(example = "Charlinhos")
     private String name;
 
     @Column(nullable = false)
+    @Schema(example = "Estrondoso God")
     private String namePlayer;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
+    @Schema(example = "BARD")
     private TypeCharacter characterClass;
 
     @Column(nullable = false)
+    @Schema(example = "0")
     private int level;
 
     @Column(nullable = false)
+    @Schema(example = "2")
     private int power;
     
     @Column(nullable = false)
+    @Schema(example = "2")
     private int defence;
 
     @ManyToMany
@@ -49,6 +57,7 @@ public class Character {
         joinColumns = @JoinColumn(name = "character_id"),
         inverseJoinColumns = @JoinColumn(name = "magic_item_id")
     )
+    @Schema(example = "")
     private List<MagicItem> magicItems = new ArrayList<>();
 
     public Character() {}
